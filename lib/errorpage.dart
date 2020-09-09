@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class error_page extends StatelessWidget {
+class errorpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
