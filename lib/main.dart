@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterplayground/errorpage.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'welcome_page.dart';
 
@@ -10,6 +9,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        buttonColor: Colors.blue,
+        fontFamily: 'Georgia',
+        textTheme: TextTheme(
+          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+          headline5: TextStyle(fontSize: 28.0,color: Colors.white, fontWeight: FontWeight.bold),
+          headline6: TextStyle(fontSize: 36.0, color: Colors.black),
+          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+          bodyText1: TextStyle(fontSize: 16.0, fontFamily: 'Hind'),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
@@ -47,12 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.only(top: 50.0),
                 child: Center(
                   child: Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: 40.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green,
-                    ),
+                    'Sign In',
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                 ),
               ),
@@ -63,10 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _emailcolumn(),
-                      _passwordcolumn(),
+                      build_EmailColumn(),
+                      build_PasswordColumn(),
                       SizedBox(height: 100.0),
-                      _loginbutton(),
+                      build_LoginButton(),
                     ],
                   ),
                 ),
@@ -79,32 +85,21 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 
-  Widget _loginbutton() {
+  Widget build_LoginButton() {
     return Container(
-      padding: EdgeInsets.only(left: 50.0, right: 50.0),
+      padding: EdgeInsets.only(left: 80.0, right: 80.0),
       height: 60.0,
       child: RaisedButton(
-        color: Colors.green,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         onPressed: () {
           if (formKey.currentState.validate()) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return welcome_page();
-                },
-              ),
-            );
+            Navigator.pushNamed(context, '/first');
           }
         },
         child: Center(
           child: Text(
             'LOGIN',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20.0,
-            ),
+            style: Theme.of(context).textTheme.headline5,
           ),
         ),
       ),
@@ -112,15 +107,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 
-  Widget _emailcolumn(){
+  Widget build_EmailColumn(){
     return Container(
       child: TextFormField(
         decoration: InputDecoration(
             labelText: 'EMAIL',
-            labelStyle: TextStyle(
-              fontWeight: FontWeight.w500,
-              color: Colors.grey,
-            )),
+            labelStyle: Theme.of(context).textTheme.bodyText1,),
         validator: (input) =>
         !input.contains('@')
             ? 'Not a valid Email'
@@ -130,15 +122,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _passwordcolumn(){
+  Widget build_PasswordColumn(){
     return Container(
       child: TextFormField(
         decoration: InputDecoration(
             labelText: 'PASSWORD',
-            labelStyle: TextStyle(
-              fontWeight: FontWeight.w500,
-              color: Colors.grey,
-            )),
+            labelStyle: Theme.of(context).textTheme.bodyText2,),
         obscureText: true,
         validator: passwordValidator,
         onSaved: (input) => _password,

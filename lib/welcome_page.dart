@@ -11,23 +11,18 @@ class welcome_page extends StatelessWidget {
             child: Center(
               child: Text(
                 'Welcome User',
-                style: TextStyle(
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                style: Theme.of(context).textTheme.headline6,
                 ),
               ),
             ),
-          ),
           SizedBox(height: 80.0),
           Container(
-            padding: EdgeInsets.only(left: 50.0, right: 50.0),
-            height: 60.0,
+            padding: EdgeInsets.only(left: 90.0, right: 90.0),
+            height: 55.0,
             child: Material(
-              borderRadius: BorderRadius.circular(30.0),
-              color: Colors.green,
-              child: GestureDetector(
-                onTap: () {
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                onPressed: () {
                   Navigator.pop(
                       context
                   );
@@ -35,11 +30,7 @@ class welcome_page extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'GO BACK',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20.0,
-                    ),
+                    style: Theme.of(context).textTheme.headline5,
                   ),
                 ),
               ),
